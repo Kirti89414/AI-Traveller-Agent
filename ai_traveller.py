@@ -1,6 +1,10 @@
+import os
+from dotenv import load_env
 import streamlit as st
 from langchain_groq import ChatGroq 
 from langchain.messages import HumanMessage, AIMessage
+
+load_dotenv()
 
 # ---------------- CONFIG ----------------
 st.set_page_config(page_title="AI Travel Agent", page_icon="🌍")
@@ -8,8 +12,7 @@ st.set_page_config(page_title="AI Travel Agent", page_icon="🌍")
 llm = ChatGroq(
     model="llama-3.1-8b-instant",
     temperature=0.4,
-    api_key="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"
-)
+    api_key = os.getenv("GROQ_API_KEY")
 
 # ---------------- SESSION STATE ----------------
 if "chat" not in st.session_state:
